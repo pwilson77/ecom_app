@@ -1,7 +1,35 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import Navbar from "./Navbar";
 
 export default function Product(props) {
+  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  const [productName, setProductName] = useState("");
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
+  const [stock, setStock] = useState(0);
+  const [category, setCategory] = useState();
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryDescription, setCategoryDescription] = useState("");
+
+  const addProduct = (e) => {
+    e.preventDefault();
+    const data = { productName, price, description, stock, category };
+    axios
+      .post(`${server_url}product/create`, data)
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e.data));
+  };
+
+  const addCategory = (e) => {
+    e.preventDefault();
+    const data = { categoryName, description: categoryDescription };
+    axios
+      .post(`${server_url}category/create`, data)
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e.data));
+  };
+
   return (
     <div className="main-panel">
       <Navbar />
@@ -14,28 +42,7 @@ export default function Product(props) {
                   <h4 className="title">Add Product</h4>
                 </div>
                 <div className="content">
-                  <form>
-                    {/* <div className="row">
-                                    <div className="col-md-5">
-                                        <div className="form-group">
-                                            <label>Company (disabled)</label>
-                                            <input type="text" className="form-control" disabled placeholder="Company" value="Creative Code Inc." />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <div className="form-group">
-                                            <label>Username</label>
-                                            <input type="text" className="form-control" placeholder="Username" value="michael23" />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label for="exampleInputEmail1">Email address</label>
-                                            <input type="email" className="form-control" placeholder="Email"/>
-                                        </div>
-                                    </div>
-                                </div> */}
-
+                  <form onSubmit={addProduct}>
                     <div className="row">
                       <div className="col-md-6">
                         <div className="form-group">
@@ -46,6 +53,7 @@ export default function Product(props) {
                             placeholder="Company"
                             value="Mike"
                             name="productName"
+                            onChange={(e) => setProductName(e.target.value)}
                           />
                         </div>
                       </div>
@@ -57,6 +65,7 @@ export default function Product(props) {
                             className="form-control"
                             placeholder="Enter Price"
                             name="price"
+                            onChange={(e) => setPrice(e.target.value)}
                           />
                         </div>
                       </div>
@@ -71,6 +80,7 @@ export default function Product(props) {
                             className="form-control"
                             placeholder="Product Description"
                             name="description"
+                            onChange={(e) => setDescription(e.target.value)}
                           />
                         </div>
                       </div>
@@ -85,6 +95,7 @@ export default function Product(props) {
                             className="form-control"
                             placeholder="Product Stock"
                             name="stock"
+                            onChange={(e) => setStock(e.target.value)}
                           />
                         </div>
                       </div>
@@ -102,16 +113,6 @@ export default function Product(props) {
                         </div>
                       </div>
                     </div>
-                    {/* 
-                                <div className="row">
-                                    <div className="col-md-12">
-                                        <div className="form-group">
-                                            <label>About Me</label>
-                                            <textarea rows="5" className="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                        </div>
-                                    </div>
-                                </div> */}
-
                     <button
                       type="submit"
                       className="btn btn-info btn-fill pull-right"
@@ -128,35 +129,39 @@ export default function Product(props) {
                 <h4 class="title">Add Category</h4>
               </div>
               <div className="content">
-                <div className="row">
-                  <div className="form-group col-md-12">
-                    <label>Category Name</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Product Description"
-                      name="categoryName"
-                    />
+                <form onSubmit={addCategory}>
+                  <div className="row">
+                    <div className="form-group col-md-12">
+                      <label>Category Name</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Product Description"
+                        name="categoryName"
+                        onChange={(e) => setCategoryName(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="form-group col-md-12">
-                    <label>Category Description</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Product Description"
-                      name="categoryDescription"
-                    />
+                  <div className="row">
+                    <div className="form-group col-md-12">
+                      <label>Category Description</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Product Description"
+                        name="categoryDescription"
+                        onChange={(e) => setCategoryDescription(e.target.value)}
+                      />
+                    </div>
                   </div>
-                </div>
 
-                <button
-                  type="submit"
-                  className="btn btn-info btn-fill pull-right"
-                >
-                  Add Category
-                </button>
+                  <button
+                    type="submit"
+                    className="btn btn-info btn-fill pull-right"
+                  >
+                    Add Category
+                  </button>
+                </form>
               </div>
             </div>
           </div>
