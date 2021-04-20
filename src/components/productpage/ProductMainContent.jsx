@@ -1,4 +1,5 @@
 import React from "react";
+import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function ProductMainContent(props) {
   return (
@@ -6,7 +7,7 @@ export default function ProductMainContent(props) {
       <div className="mobile-nav">
         <div className="amado-navbar-brand">
           <a href="index.html">
-            <img src="img/core-img/logo.png" alt="" />
+            <img src="assets/img/core-img/logo.png" alt="" />
           </a>
         </div>
         <div className="amado-navbar-toggler">
@@ -15,69 +16,7 @@ export default function ProductMainContent(props) {
           <span></span>
         </div>
       </div>
-
-      <header className="header-area clearfix">
-        <div className="nav-close">
-          <i className="fa fa-close" aria-hidden="true"></i>
-        </div>
-        <div className="logo">
-          <a href="index.html">
-            <img src="img/core-img/logo.png" alt="" />
-          </a>
-        </div>
-        <nav className="amado-nav">
-          <ul>
-            <li>
-              <a href="index.html">Home</a>
-            </li>
-            <li>
-              <a href="shop.html">Shop</a>
-            </li>
-            <li className="active">
-              <a href="product-details.html">Product</a>
-            </li>
-            <li>
-              <a href="cart.html">Cart</a>
-            </li>
-            <li>
-              <a href="checkout.html">Checkout</a>
-            </li>
-          </ul>
-        </nav>
-        <div className="amado-btn-group mt-30 mb-100">
-          <a href="#" className="btn amado-btn mb-15">
-            %Discount%
-          </a>
-          <a href="#" className="btn amado-btn active">
-            New this week
-          </a>
-        </div>
-        <div className="cart-fav-search mb-100">
-          <a href="cart.html" className="cart-nav">
-            <img src="img/core-img/cart.png" alt="" /> Cart <span>(0)</span>
-          </a>
-          <a href="#" className="fav-nav">
-            <img src="img/core-img/favorites.png" alt="" /> Favourite
-          </a>
-          <a href="#" className="search-nav">
-            <img src="img/core-img/search.png" alt="" /> Search
-          </a>
-        </div>
-        <div className="social-info d-flex justify-content-between">
-          <a href="#">
-            <i className="fa fa-pinterest" aria-hidden="true"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-instagram" aria-hidden="true"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-facebook" aria-hidden="true"></i>
-          </a>
-          <a href="#">
-            <i className="fa fa-twitter" aria-hidden="true"></i>
-          </a>
-        </div>
-      </header>
+      <HomePageSidebar />
       <div className="single-product-area section-padding-100 clearfix">
         <div className="container-fluid">
           <div className="row">
@@ -114,33 +53,41 @@ export default function ProductMainContent(props) {
                       className="active"
                       data-target="#product_details_slider"
                       data-slide-to="0"
-                      style="background-image: url(img/product-img/pro-big-1.jpg);"
+                      style={{
+                        backgroundImage: `url("assets/img/product-img/pro-big-1.jpg")`,
+                      }}
                     ></li>
                     <li
                       data-target="#product_details_slider"
                       data-slide-to="1"
-                      style="background-image: url(img/product-img/pro-big-2.jpg);"
+                      style={{
+                        backgroundImage: `url("assets/img/product-img/pro-big-2.jpg")`,
+                      }}
                     ></li>
                     <li
                       data-target="#product_details_slider"
                       data-slide-to="2"
-                      style="background-image: url(img/product-img/pro-big-3.jpg);"
+                      style={{
+                        backgroundImage: `url("assets/img/product-img/pro-big-3.jpg")`,
+                      }}
                     ></li>
                     <li
                       data-target="#product_details_slider"
                       data-slide-to="3"
-                      style="background-image: url(img/product-img/pro-big-4.jpg);"
+                      style={{
+                        backgroundImage: `url("assets/img/product-img/pro-big-4.jpg")`,
+                      }}
                     ></li>
                   </ol>
                   <div className="carousel-inner">
                     <div className="carousel-item active">
                       <a
                         className="gallery_img"
-                        href="img/product-img/pro-big-1.jpg"
+                        href="assets/img/product-img/pro-big-1.jpg"
                       >
                         <img
                           className="d-block w-100"
-                          src="img/product-img/pro-big-1.jpg"
+                          src="assets/img/product-img/pro-big-1.jpg"
                           alt="First slide"
                         />
                       </a>
@@ -148,11 +95,11 @@ export default function ProductMainContent(props) {
                     <div className="carousel-item">
                       <a
                         className="gallery_img"
-                        href="img/product-img/pro-big-2.jpg"
+                        href="assets/img/product-img/pro-big-2.jpg"
                       >
                         <img
                           className="d-block w-100"
-                          src="img/product-img/pro-big-2.jpg"
+                          src="assets/img/product-img/pro-big-2.jpg"
                           alt="Second slide"
                         />
                       </a>
@@ -160,11 +107,11 @@ export default function ProductMainContent(props) {
                     <div className="carousel-item">
                       <a
                         className="gallery_img"
-                        href="img/product-img/pro-big-3.jpg"
+                        href="assets/img/product-img/pro-big-3.jpg"
                       >
                         <img
                           className="d-block w-100"
-                          src="img/product-img/pro-big-3.jpg"
+                          src="assets/img/product-img/pro-big-3.jpg"
                           alt="Third slide"
                         />
                       </a>
@@ -172,11 +119,11 @@ export default function ProductMainContent(props) {
                     <div className="carousel-item">
                       <a
                         className="gallery_img"
-                        href="img/product-img/pro-big-4.jpg"
+                        href="assets/img/product-img/pro-big-4.jpg"
                       >
                         <img
                           className="d-block w-100"
-                          src="img/product-img/pro-big-4.jpg"
+                          src="assets/img/product-img/pro-big-4.jpg"
                           alt="Fourth slide"
                         />
                       </a>
