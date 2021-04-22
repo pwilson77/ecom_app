@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function ProductMainContent(props) {
@@ -62,7 +62,7 @@ export default function ProductMainContent(props) {
             </div>
           </div>
 
-          {/* <div className="row">
+          <div className="row">
             <div className="col-12 col-lg-7">
               <div className="single_product_thumb">
                 <div
@@ -71,15 +71,15 @@ export default function ProductMainContent(props) {
                   data-ride="carousel"
                 >
                   <ol className="carousel-indicators">
-                    <li
+                    {/* <li
                       className="active"
                       data-target="#product_details_slider"
                       data-slide-to="0"
                       style={{
-                        backgroundImage: `url("assets/img/product-img/pro-big-1.jpg")`,
+                        backgroundImage: `url("${productInfo.productImage}")`,
                       }}
-                    ></li>
-                    <li
+                    ></li> */}
+                    {/* <li
                       data-target="#product_details_slider"
                       data-slide-to="1"
                       style={{
@@ -99,7 +99,7 @@ export default function ProductMainContent(props) {
                       style={{
                         backgroundImage: `url("assets/img/product-img/pro-big-4.jpg")`,
                       }}
-                    ></li>
+                    ></li> */}
                   </ol>
                   <div className="carousel-inner">
                     <div className="carousel-item active">
@@ -109,12 +109,12 @@ export default function ProductMainContent(props) {
                       >
                         <img
                           className="d-block w-100"
-                          src="assets/img/product-img/pro-big-1.jpg"
+                          src={productInfo.productImage}
                           alt="First slide"
                         />
                       </a>
                     </div>
-                    <div className="carousel-item">
+                    {/* <div className="carousel-item">
                       <a
                         className="gallery_img"
                         href="assets/img/product-img/pro-big-2.jpg"
@@ -149,7 +149,7 @@ export default function ProductMainContent(props) {
                           alt="Fourth slide"
                         />
                       </a>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>
@@ -158,9 +158,9 @@ export default function ProductMainContent(props) {
               <div className="single_product_desc">
                 <div className="product-meta-data">
                   <div className="line"></div>
-                  <p className="product-price">$180</p>
+                  <p className="product-price">{`$${productInfo.price}`}</p>
                   <a href="product-details.html">
-                    <h6>White Modern Chair</h6>
+                    <h6>{productInfo.productName}/</h6>
                   </a>
                   <div className="ratings-review mb-15 d-flex align-items-center justify-content-between">
                     <div className="ratings">
@@ -180,12 +180,7 @@ export default function ProductMainContent(props) {
                 </div>
 
                 <div className="short_overview my-5">
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Aliquid quae eveniet culpa officia quidem mollitia impedit
-                    iste asperiores nisi reprehenderit consequatur, autem,
-                    nostrum pariatur enim?
-                  </p>
+                  <p>{productInfo.description}</p>
                 </div>
 
                 <form className="cart clearfix" method="post">
@@ -228,7 +223,6 @@ export default function ProductMainContent(props) {
               </div>
             </div>
           </div>
-         */}
         </div>
       </div>
     </div>

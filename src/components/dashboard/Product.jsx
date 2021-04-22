@@ -42,10 +42,10 @@ export default function Product(props) {
 
     storageRef.put(blobFile).then((snapshot) => {
       console.log("Uploaded a blob or file");
-    });
-
-    storageRef.getDownloadURL().then((url) => {
-      setProductUrl(url);
+      storageRef.getDownloadURL().then((url) => {
+        console.log(url);
+        setProductUrl(url);
+      });
     });
   };
 
@@ -81,7 +81,10 @@ export default function Product(props) {
     const data = { categoryName, description: categoryDescription };
     axios
       .post(`${server_url}category/create`, data)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        fetchCategories();
+      })
       .catch((e) => console.log(e.data));
   };
 

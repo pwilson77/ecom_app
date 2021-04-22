@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import $ from "jquery";
-import Masonry from "react-masonry-css";
+// import Masonry from "react-masonry-css";
 import HomePageSidebar from "./HomePageSidebar";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function MainContent(props) {
   const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
@@ -19,9 +20,10 @@ export default function MainContent(props) {
 
   const fetchProducts = () => {
     axios
-      .get(`${server_url}products/create`)
+      .get(`${server_url}product`)
       .then((res) => {
         setProducts(res.data.message);
+        masonryFunc();
       })
       .catch((e) => console.log(e));
   };
@@ -65,16 +67,13 @@ export default function MainContent(props) {
       <HomePageSidebar />
       <div className="products-catagories-area clearfix">
         <div className="amado-pro-catagory clearfix d-flex wrap">
-          {/* <Masonry>
-            
-          </Masonry> */}
           {products.map((product) => (
             <div className="single-products-catagory clearfix">
               <Link to={`/products/${product.id}`}>
-                <img src="assets/img/bg-img/1.jpg" alt="" />
+                <img src={product.productImage} alt="" />
                 <div className="hover-content">
                   <div className="line"></div>
-                  <p>{`From $ ${product.price}`}</p>
+                  <p>{`From $${product.price}`}</p>
                   <h4>{product.productName}</h4>
                 </div>
               </Link>

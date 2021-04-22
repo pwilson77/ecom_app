@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePageSidebar(props) {
+  const server_url = "http://localhost:3000/";
+
   return (
     <header className="header-area clearfix">
       <div className="nav-close">
@@ -9,7 +11,7 @@ export default function HomePageSidebar(props) {
       </div>
       <div className="logo">
         <a href="index.html">
-          <img src="assets/img/core-img/logo.png" alt="" />
+          <img src={`${server_url}assets/img/core-img/logo.png`} alt="" />
         </a>
       </div>
       <nav className="amado-nav">
