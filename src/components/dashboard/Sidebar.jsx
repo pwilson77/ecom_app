@@ -5,33 +5,33 @@ export default function Sidebar(props) {
   return (
     <React.Fragment>
       <div
-        class="sidebar"
+        className="sidebar"
         data-color="purple"
         data-image="assets/img/sidebar-5.jpg"
       >
-        <div class="sidebar-wrapper">
-          <div class="logo">
-            <a href="http://www.creative-tim.com" class="simple-text">
+        <div className="sidebar-wrapper">
+          <div className="logo">
+            <a href="http://www.creative-tim.com" className="simple-text">
               Creative Tim
             </a>
           </div>
 
-          <ul class="nav">
-            <li class="active">
+          <ul className="nav">
+            <li className="active">
               <Link to="/dashboard">
-                <i class="pe-7s-graph"></i>
+                <i className="pe-7s-graph"></i>
                 <p>Dashboard</p>
               </Link>
             </li>
             <li>
               <Link to="/dashboard_product">
-                <i class="pe-7s-user"></i>
+                <i className="pe-7s-user"></i>
                 <p>Products and Categories</p>
               </Link>
             </li>
             <li>
               <Link to="/">
-                <i class="pe-7s-note2"></i>
+                <i className="pe-7s-note2"></i>
                 <p>Sales</p>
               </Link>
             </li>

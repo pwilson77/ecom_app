@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "axios": "^0.21.1",
     "cart-localstorage": "^1.1.5",
+    "firebase": "^8.4.1",
     "jquery": "^3.6.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",

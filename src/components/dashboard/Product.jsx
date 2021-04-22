@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
+import firebase from "firebase";
 
 export default function Product(props) {
   const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
@@ -11,10 +12,64 @@ export default function Product(props) {
   const [category, setCategory] = useState();
   const [categoryName, setCategoryName] = useState("");
   const [categoryDescription, setCategoryDescription] = useState("");
+  const [intializeFirebase, setInitializeFirebase] = useState(false);
+  const [productUrl, setProductUrl] = useState("");
+  const [categories, setCategories] = useState([]);
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyAviqsGCZo-ucTF_OKGdqP6BWIck46YJHg",
+    authDomain: "sampleecom-11eb1.firebaseapp.com",
+    projectId: "sampleecom-11eb1",
+    storageBucket: "sampleecom-11eb1.appspot.com",
+    messagingSenderId: "124265359312",
+    appId: "1:124265359312:web:a33fa11b20d6675f827bd5",
+    measurementId: "G-THW1JGN64V",
+  };
+
+  const fetchCategories = () => {
+    axios
+      .get(`${server_url}category`)
+      .then((res) => {
+        setCategories(res.data.message);
+      })
+      .catch((e) => console.log(e.data));
+  };
+
+  const uploadImage = (e) => {
+    let blobFile = e.target.files[0];
+    let fileName = e.target.files[0].name;
+    var storageRef = firebase.storage().ref().child(fileName);
+
+    storageRef.put(blobFile).then((snapshot) => {
+      console.log("Uploaded a blob or file");
+    });
+
+    storageRef.getDownloadURL().then((url) => {
+      setProductUrl(url);
+    });
+  };
+
+  useEffect((e) => {
+    // Initialize Firebase
+
+    if (!intializeFirebase) {
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      setInitializeFirebase(true);
+      fetchCategories();
+    }
+  });
 
   const addProduct = (e) => {
     e.preventDefault();
-    const data = { productName, price, description, stock, category };
+    const data = {
+      productName,
+      price,
+      description,
+      stock,
+      categoryID: parseInt(category),
+      productImage: productUrl,
+    };
     axios
       .post(`${server_url}product/create`, data)
       .then((res) => console.log(res.data))
@@ -50,8 +105,7 @@ export default function Product(props) {
                           <input
                             type="text"
                             className="form-control"
-                            placeholder="Company"
-                            value="Mike"
+                            placeholder="Product Name"
                             name="productName"
                             onChange={(e) => setProductName(e.target.value)}
                           />
@@ -102,14 +156,30 @@ export default function Product(props) {
                       <div className="col-md-4">
                         <div className="form-group">
                           <select
-                            class="form-select"
+                            className="form-select"
                             aria-label="Default select example"
+                            onChange={(e) => setCategory(e.target.value)}
                           >
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            {categories.map((category) => (
+                              <option value={category.id}>
+                                {category.categoryName}
+                              </option>
+                            ))}
                           </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="row">
+                      <div className="col-md-12">
+                        <div className="form-group">
+                          <label htmlFor="product-image">Product Image</label>
+                          <input
+                            type="file"
+                            name="product_image"
+                            id="product_img"
+                            onChange={uploadImage}
+                          />
                         </div>
                       </div>
                     </div>
@@ -125,8 +195,8 @@ export default function Product(props) {
               </div>
             </div>
             <div className="col-md-4 card">
-              <div class="header">
-                <h4 class="title">Add Category</h4>
+              <div className="header">
+                <h4 className="title">Add Category</h4>
               </div>
               <div className="content">
                 <form onSubmit={addCategory}>
