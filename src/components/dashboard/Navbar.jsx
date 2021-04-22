@@ -1,20 +1,27 @@
 import React from "react";
 
 export default function Navbar(props) {
-    return (
-        <nav className="navbar navbar-default navbar-fixed">
-        <div className="container-fluid">
-            <div className="navbar-header">
-                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                    <span className="sr-only">Toggle navigation</span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                </button>
-                <a className="navbar-brand" href="#">User</a>
-            </div>
-            <div className="collapse navbar-collapse">
-                <ul className="nav navbar-nav navbar-left">
+  return (
+    <nav className="navbar navbar-default navbar-fixed">
+      <div className="container-fluid">
+        <div className="navbar-header">
+          <button
+            type="button"
+            className="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#navigation-example-2"
+          >
+            <span className="sr-only">Toggle navigation</span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+            <span className="icon-bar"></span>
+          </button>
+          <a className="navbar-brand" href="#">
+            User
+          </a>
+        </div>
+        <div className="collapse navbar-collapse">
+          {/* <ul className="nav navbar-nav navbar-left">
                     <li>
                         <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                             <i className="fa fa-dashboard"></i>
@@ -45,15 +52,15 @@ export default function Navbar(props) {
                             <p className="hidden-lg hidden-md">Search</p>
                         </a>
                     </li>
-                </ul>
+                </ul> */}
 
-                <ul className="nav navbar-nav navbar-right">
-                    <li>
-                       <a href="">
-                           <p>Account</p>
-                        </a>
-                    </li>
-                    <li className="dropdown">
+          <ul className="nav navbar-nav navbar-right">
+            <li>
+              <a href="">
+                <p>Account</p>
+              </a>
+            </li>
+            {/* <li className="dropdown">
                           <a href="#" className="dropdown-toggle" data-toggle="dropdown">
                                 <p>
                                     Dropdown
@@ -70,18 +77,16 @@ export default function Navbar(props) {
                             <li className="divider"></li>
                             <li><a href="#">Separated link</a></li>
                           </ul>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p>Log out</p>
-                        </a>
-                    </li>
-                    <li className="separator hidden-lg hidden-md"></li>
-                </ul>
-            </div>
+                    </li> */}
+            <li>
+              <a href="#">
+                <p>Log out</p>
+              </a>
+            </li>
+            <li className="separator hidden-lg hidden-md"></li>
+          </ul>
         </div>
+      </div>
     </nav>
-
-
-    )
+  );
 }
