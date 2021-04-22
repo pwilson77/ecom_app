@@ -70,6 +70,7 @@ export default function Product(props) {
     if (!alreadyFetched) {
       fetchCategories();
       fetchProducts();
+      setAlreadyFetched(true);
     }
   });
 
