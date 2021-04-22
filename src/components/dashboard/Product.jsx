@@ -15,6 +15,7 @@ export default function Product(props) {
   const [intializeFirebase, setInitializeFirebase] = useState(false);
   const [productUrl, setProductUrl] = useState("");
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
 
   var firebaseConfig = {
     apiKey: "AIzaSyAviqsGCZo-ucTF_OKGdqP6BWIck46YJHg",
@@ -24,6 +25,15 @@ export default function Product(props) {
     messagingSenderId: "124265359312",
     appId: "1:124265359312:web:a33fa11b20d6675f827bd5",
     measurementId: "G-THW1JGN64V",
+  };
+
+  const fetchProducts = () => {
+    axios
+      .get(`${server_url}product`)
+      .then((res) => {
+        setProducts(res.data.message);
+      })
+      .catch((e) => console.log(e));
   };
 
   const fetchCategories = () => {
@@ -56,7 +66,8 @@ export default function Product(props) {
   };
 
   useEffect((e) => {
-    // Initialize Firebase
+    fetchCategories();
+    fetchProducts();
   });
 
   const addProduct = (e) => {
@@ -234,6 +245,40 @@ export default function Product(props) {
                     Add Category
                   </button>
                 </form>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="header">
+                  <h4 class="title">List of Products</h4>
+                  <p class="category">Here is a subtitle for this table</p>
+                </div>
+                <div class="content table-responsive table-full-width">
+                  <table class="table table-hover table-striped">
+                    <thead>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                      <th>Description</th>
+                      <th>Created On</th>
+                    </thead>
+                    <tbody>
+                      {products.map((product, i) => (
+                        <tr>
+                          <td>{i + 1}</td>
+                          <td>{product.productName}</td>
+                          <td>{product.price}</td>
+                          <td>{product.stock}</td>
+                          <td>{product.description}</td>
+                          <td>{product.createdOn}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
