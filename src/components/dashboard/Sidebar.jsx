@@ -12,7 +12,7 @@ export default function Sidebar(props) {
         <div className="sidebar-wrapper">
           <div className="logo">
             <a href="http://www.creative-tim.com" className="simple-text">
-              Creative Tim
+              EOS Admin
             </a>
           </div>
 
@@ -30,7 +30,7 @@ export default function Sidebar(props) {
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/dashboard_sales">
                 <i className="pe-7s-note2"></i>
                 <p>Sales</p>
               </Link>

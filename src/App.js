@@ -8,6 +8,7 @@ import Home2 from './components/homepage2/Home2';
 import CartPage from './components/cart/CartPage';
 import CheckoutPage from './components/cart/CheckoutPage';
 import ProductPage from './components/productpage/ProductPage';
+import DashboardSales from './components/dashboard/DashboardSales';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route exact path="/" component={Home2} />
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/dashboard_product" component={DashboardProduct} />
+      <Route exact path="/dashboard_sales" component={DashboardSales} />
       <Route
         path="/products/:slug"
         render={({ match }) => {

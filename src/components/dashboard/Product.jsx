@@ -36,6 +36,12 @@ export default function Product(props) {
   };
 
   const uploadImage = (e) => {
+    if (!intializeFirebase) {
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      setInitializeFirebase(true);
+      fetchCategories();
+    }
     let blobFile = e.target.files[0];
     let fileName = e.target.files[0].name;
     var storageRef = firebase.storage().ref().child(fileName);
@@ -51,13 +57,6 @@ export default function Product(props) {
 
   useEffect((e) => {
     // Initialize Firebase
-
-    if (!intializeFirebase) {
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-      setInitializeFirebase(true);
-      fetchCategories();
-    }
   });
 
   const addProduct = (e) => {
