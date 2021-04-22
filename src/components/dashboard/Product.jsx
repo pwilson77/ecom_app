@@ -16,6 +16,7 @@ export default function Product(props) {
   const [productUrl, setProductUrl] = useState("");
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [alreadyFetched, setAlreadyFetched] = useState(false);
 
   var firebaseConfig = {
     apiKey: "AIzaSyAviqsGCZo-ucTF_OKGdqP6BWIck46YJHg",
@@ -66,8 +67,10 @@ export default function Product(props) {
   };
 
   useEffect((e) => {
-    fetchCategories();
-    fetchProducts();
+    if (!alreadyFetched) {
+      fetchCategories();
+      fetchProducts();
+    }
   });
 
   const addProduct = (e) => {
@@ -249,14 +252,14 @@ export default function Product(props) {
             </div>
           </div>
           <div className="row">
-            <div class="col-md-12">
-              <div class="card">
-                <div class="header">
-                  <h4 class="title">List of Products</h4>
-                  <p class="category">Here is a subtitle for this table</p>
+            <div className="col-md-12">
+              <div className="card">
+                <div className="header">
+                  <h4 className="title">List of Products</h4>
+                  <p className="category">Here is a subtitle for this table</p>
                 </div>
-                <div class="content table-responsive table-full-width">
-                  <table class="table table-hover table-striped">
+                <div className="content table-responsive table-full-width">
+                  <table className="table table-hover table-striped">
                     <thead>
                       <th>ID</th>
                       <th>Name</th>
