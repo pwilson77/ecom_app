@@ -1,12 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import Masonry from "react-masonry-css";
 import HomePageSidebar from "./HomePageSidebar";
+import axios from "axios";
 
 export default function MainContent(props) {
+  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  const [products, setProducts] = useState([]);
+  const [alreadyFetched, setAlreadyFetched] = useState(false);
+
   useEffect(() => {
-    masonryFunc();
+    //masonryFunc();
+    if (!alreadyFetched) {
+      fetchProducts();
+      setAlreadyFetched(true);
+    }
   });
+
+  const fetchProducts = () => {
+    axios
+      .get(`${server_url}products/create`)
+      .then((res) => {
+        setProducts(res.data.message);
+      })
+      .catch((e) => console.log(e));
+  };
 
   const masonryFunc = () => {
     var $window = $(window);
@@ -50,104 +68,18 @@ export default function MainContent(props) {
           {/* <Masonry>
             
           </Masonry> */}
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/1.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $180</p>
-                <h4>Modern Chair</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/2.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $180</p>
-                <h4>Minimalistic Plant Pot</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/3.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $180</p>
-                <h4>Modern Chair</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/4.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $180</p>
-                <h4>Night Stand</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/5.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $18</p>
-                <h4>Plant Pot</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/6.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $320</p>
-                <h4>Small Table</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/7.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $318</p>
-                <h4>Metallic Chair</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="assets/img/bg-img/8.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $318</p>
-                <h4>Modern Rocking Chair</h4>
-              </div>
-            </a>
-          </div>
-
-          <div className="single-products-catagory clearfix">
-            <a href="shop.html">
-              <img src="img/bg-img/9.jpg" alt="" />
-              <div className="hover-content">
-                <div className="line"></div>
-                <p>From $318</p>
-                <h4>Home Deco</h4>
-              </div>
-            </a>
-          </div>
+          {products.map((product) => (
+            <div className="single-products-catagory clearfix">
+              <Link to={`/products/${product.id}`}>
+                <img src="assets/img/bg-img/1.jpg" alt="" />
+                <div className="hover-content">
+                  <div className="line"></div>
+                  <p>{`From $ ${product.price}`}</p>
+                  <h4>{product.productName}</h4>
+                </div>
+              </Link>
+            </div>
+          ))}
         </div>
       </div>
     </div>

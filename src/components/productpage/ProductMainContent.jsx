@@ -1,7 +1,29 @@
-import React from "react";
+import axios from "axios";
+import React, { useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function ProductMainContent(props) {
+  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  const [productInfo, setProductInfo] = useState({});
+  const [alreadyFetched, setAlreadyFetched] = useState(false);
+
+  useEffect(() => {
+    //masonryFunc();
+    if (!alreadyFetched) {
+      fetchProductInfo();
+      setAlreadyFetched(true);
+    }
+  });
+
+  const fetchProductInfo = () => {
+    axios
+      .get(`${server_url}product/${props.productId}`)
+      .then((res) => {
+        setProductInfo(res.data.message);
+        console.log("Fetched data");
+      })
+      .catch((e) => console.log(e.data));
+  };
   return (
     <div className="main-content-wrapper d-flex clearfix">
       <div className="mobile-nav">
@@ -40,7 +62,7 @@ export default function ProductMainContent(props) {
             </div>
           </div>
 
-          <div className="row">
+          {/* <div className="row">
             <div className="col-12 col-lg-7">
               <div className="single_product_thumb">
                 <div
@@ -206,6 +228,7 @@ export default function ProductMainContent(props) {
               </div>
             </div>
           </div>
+         */}
         </div>
       </div>
     </div>

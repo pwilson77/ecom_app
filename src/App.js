@@ -15,7 +15,13 @@ function App() {
       <Route exact path="/" component={Home2} />
       <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/dashboard_product" component={DashboardProduct} />
-      <Route exact path="/product" component={ProductPage} />
+      <Route
+        path="/products/:slug"
+        render={({ match }) => {
+            return <ProductPage productId={parseInt(match.params.slug)} />;
+        }}
+      />
+      {/* <Route exact path="/product" component={ProductPage} /> */}
       <Route exact path="/cart" component={CartPage} />
       <Route exact path="/checkout" component={CheckoutPage} />
     </Switch>

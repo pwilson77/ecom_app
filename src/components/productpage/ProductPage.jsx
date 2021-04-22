@@ -8,7 +8,7 @@ export default function ProductPage(props) {
   return (
     <React.Fragment>
       <SearchWrapper />
-      <ProductMainContent />
+      <ProductMainContent productId={props.productId} />
       <NewsletterArea />
       <FooterArea />
     </React.Fragment>
