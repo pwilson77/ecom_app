@@ -28,6 +28,12 @@ export default function HomePageSidebar(props) {
           <li>
             <Link to="/checkout">Checkout</Link>
           </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/register">Register</Link>
+          </li>
         </ul>
       </nav>
       {/* <div className="amado-btn-group mt-30 mb-100">

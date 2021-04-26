@@ -9,6 +9,8 @@ import CartPage from './components/cart/CartPage';
 import CheckoutPage from './components/cart/CheckoutPage';
 import ProductPage from './components/productpage/ProductPage';
 import DashboardSales from './components/dashboard/DashboardSales';
+import LoginPage from './components/cart/LoginPage';
+import RegisterPage from './components/cart/RegisterPage';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
       {/* <Route exact path="/product" component={ProductPage} /> */}
       <Route exact path="/cart" component={CartPage} />
       <Route exact path="/checkout" component={CheckoutPage} />
+      <Route exact path="/login" component={LoginPage} />
+      <Route exact path="/register" component={RegisterPage} />
     </Switch>
   );
 }
