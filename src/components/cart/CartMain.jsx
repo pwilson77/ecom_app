@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
+import { list } from "cart-localstorage";
+import { Link } from "react-router-dom";
 
 export default function CartMain(props) {
+  const [total, setTotal] = useState(0);
+  const [checkCal, setCheckCal] = useState(false);
+  const calculateCart = () => {
+    let tot = list().reduce((x, y) => x + y.price * y.quantity, 0);
+    setTotal(tot);
+    setCheckCal(true);
+  };
+
+  useEffect(() => {
+    if (!checkCal) {
+      calculateCart();
+    }
+  });
+
   return (
     <div className="main-content-wrapper d-flex clearfix">
       <div className="mobile-nav">
@@ -37,141 +53,26 @@ export default function CartMain(props) {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="cart_product_img">
-                        <a href="#">
-                          <img
-                            src="assets/img/bg-img/cart1.jpg"
-                            alt="Product"
-                          />
-                        </a>
-                      </td>
-                      <td className="cart_product_desc">
-                        <h5>White Modern Chair</h5>
-                      </td>
-                      <td className="price">
-                        <span>$130</span>
-                      </td>
-                      <td className="qty">
-                        <div className="qty-btn d-flex">
-                          <p>Qty</p>
-                          <div className="quantity">
-                            <span
-                              className="qty-minus"
-                              onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"
-                            >
-                              <i className="fa fa-minus" aria-hidden="true"></i>
-                            </span>
-                            <input
-                              type="number"
-                              className="qty-text"
-                              id="qty"
-                              step="1"
-                              min="1"
-                              max="300"
-                              name="quantity"
-                              value="1"
-                            />
-                            <span
-                              className="qty-plus"
-                              onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"
-                            >
-                              <i className="fa fa-plus" aria-hidden="true"></i>
-                            </span>
+                    {list().map((item) => (
+                      <tr>
+                        <td className="cart_product_img">
+                          <Link to="/">
+                            <img src={item.image} alt="Product" />
+                          </Link>
+                        </td>
+                        <td className="cart_product_desc">
+                          <h5>{item.name}</h5>
+                        </td>
+                        <td className="price">
+                          <span>{`$${item.price}`}</span>
+                        </td>
+                        <td className="qty">
+                          <div className="qty-btn d-flex">
+                            <p>{item.quantity}</p>
                           </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="cart_product_img">
-                        <a href="#">
-                          <img
-                            src="assets/img/bg-img/cart2.jpg"
-                            alt="Product"
-                          />
-                        </a>
-                      </td>
-                      <td className="cart_product_desc">
-                        <h5>Minimal Plant Pot</h5>
-                      </td>
-                      <td className="price">
-                        <span>$10</span>
-                      </td>
-                      <td className="qty">
-                        <div className="qty-btn d-flex">
-                          <p>Qty</p>
-                          <div className="quantity">
-                            <span
-                              className="qty-minus"
-                              onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"
-                            >
-                              <i className="fa fa-minus" aria-hidden="true"></i>
-                            </span>
-                            <input
-                              type="number"
-                              className="qty-text"
-                              id="qty2"
-                              step="1"
-                              min="1"
-                              max="300"
-                              name="quantity"
-                              value="1"
-                            />
-                            <span
-                              className="qty-plus"
-                              onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"
-                            >
-                              <i className="fa fa-plus" aria-hidden="true"></i>
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="cart_product_img">
-                        <a href="#">
-                          <img
-                            src="assets/img/bg-img/cart3.jpg"
-                            alt="Product"
-                          />
-                        </a>
-                      </td>
-                      <td className="cart_product_desc">
-                        <h5>Minimal Plant Pot</h5>
-                      </td>
-                      <td className="price">
-                        <span>$10</span>
-                      </td>
-                      <td className="qty">
-                        <div className="qty-btn d-flex">
-                          <p>Qty</p>
-                          <div className="quantity">
-                            <span
-                              className="qty-minus"
-                              onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"
-                            >
-                              <i className="fa fa-minus" aria-hidden="true"></i>
-                            </span>
-                            <input
-                              type="number"
-                              className="qty-text"
-                              id="qty3"
-                              step="1"
-                              min="1"
-                              max="300"
-                              name="quantity"
-                              value="1"
-                            />
-                            <span
-                              className="qty-plus"
-                              onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"
-                            >
-                              <i className="fa fa-plus" aria-hidden="true"></i>
-                            </span>
-                          </div>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
@@ -181,13 +82,13 @@ export default function CartMain(props) {
                 <h5>Cart Total</h5>
                 <ul className="summary-table">
                   <li>
-                    <span>subtotal:</span> <span>$140.00</span>
+                    <span>subtotal:</span> <span>${total}</span>
                   </li>
                   <li>
                     <span>delivery:</span> <span>Free</span>
                   </li>
                   <li>
-                    <span>total:</span> <span>$140.00</span>
+                    <span>total:</span> <span>${total}</span>
                   </li>
                 </ul>
                 <div className="cart-btn mt-100">

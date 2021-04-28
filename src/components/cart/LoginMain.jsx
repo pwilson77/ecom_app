@@ -1,9 +1,27 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { useAlert } from "react-alert";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function LoginMain(props) {
+  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const alert = useAlert();
+
+  const loginFunc = () => {
+    const data = { email, password };
+    axios
+      .post(`${server_url}auth/login`, data)
+      .then((res) => {
+        console.log(res.data);
+        localStorage.setItem("user_details", JSON.stringify(res.data.message));
+        localStorage.setItem("loggedIn", true);
+        alert.show("Login Successful");
+        props.history.push("/");
+      })
+      .catch((e) => console.log(e));
+  };
   return (
     <div className="main-content-wrapper d-flex clearfix">
       <div className="mobile-nav">
@@ -29,16 +47,16 @@ export default function LoginMain(props) {
                   <h2>Login</h2>
                 </div>
 
-                <form action="#" method="post">
+                <form onSubmit={loginFunc}>
                   <div className="row">
                     <div className="col-md-6 mb-3">
                       <input
                         type="email"
                         className="form-control"
                         id="first_name"
-                        value=""
                         placeholder="Email"
                         required
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div className="col-md-6 mb-3">
@@ -46,13 +64,17 @@ export default function LoginMain(props) {
                         type="password"
                         className="form-control"
                         id="last_name"
-                        value=""
                         placeholder="Password"
                         required
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                     <div className="cart-btn mt-10">
-                      <a href="#" className="btn amado-btn w-100">
+                      <a
+                        href="#"
+                        className="btn amado-btn w-100"
+                        onClick={loginFunc}
+                      >
                         Login
                       </a>
                     </div>

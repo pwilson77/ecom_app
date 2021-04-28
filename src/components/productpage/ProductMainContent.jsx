@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
+import { add, total } from "cart-localstorage";
+import { Link } from "react-router-dom";
 
 export default function ProductMainContent(props) {
   const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [productInfo, setProductInfo] = useState({});
   const [alreadyFetched, setAlreadyFetched] = useState(false);
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     //masonryFunc();
@@ -14,6 +17,19 @@ export default function ProductMainContent(props) {
       setAlreadyFetched(true);
     }
   });
+
+  const addToCart = (e) => {
+    e.preventDefault();
+    add(
+      {
+        id: productInfo.id,
+        name: productInfo.productName,
+        price: productInfo.price,
+        image: productInfo.productImage,
+      },
+      quantity
+    );
+  };
 
   const fetchProductInfo = () => {
     axios
@@ -24,6 +40,7 @@ export default function ProductMainContent(props) {
       })
       .catch((e) => console.log(e.data));
   };
+
   return (
     <div className="main-content-wrapper d-flex clearfix">
       <div className="mobile-nav">
@@ -46,16 +63,10 @@ export default function ProductMainContent(props) {
               <nav aria-label="breadcrumb">
                 <ol className="breadcrumb mt-50">
                   <li className="breadcrumb-item">
-                    <a href="#">Home</a>
+                    <Link to="/">Home</Link>
                   </li>
                   <li className="breadcrumb-item">
-                    <a href="#">Furniture</a>
-                  </li>
-                  <li className="breadcrumb-item">
-                    <a href="#">Chairs</a>
-                  </li>
-                  <li className="breadcrumb-item active" aria-current="page">
-                    white modern chair
+                    <a href="#">{productInfo.productName}</a>
                   </li>
                 </ol>
               </nav>
@@ -70,37 +81,7 @@ export default function ProductMainContent(props) {
                   className="carousel slide"
                   data-ride="carousel"
                 >
-                  <ol className="carousel-indicators">
-                    {/* <li
-                      className="active"
-                      data-target="#product_details_slider"
-                      data-slide-to="0"
-                      style={{
-                        backgroundImage: `url("${productInfo.productImage}")`,
-                      }}
-                    ></li> */}
-                    {/* <li
-                      data-target="#product_details_slider"
-                      data-slide-to="1"
-                      style={{
-                        backgroundImage: `url("assets/img/product-img/pro-big-2.jpg")`,
-                      }}
-                    ></li>
-                    <li
-                      data-target="#product_details_slider"
-                      data-slide-to="2"
-                      style={{
-                        backgroundImage: `url("assets/img/product-img/pro-big-3.jpg")`,
-                      }}
-                    ></li>
-                    <li
-                      data-target="#product_details_slider"
-                      data-slide-to="3"
-                      style={{
-                        backgroundImage: `url("assets/img/product-img/pro-big-4.jpg")`,
-                      }}
-                    ></li> */}
-                  </ol>
+                  <ol className="carousel-indicators"></ol>
                   <div className="carousel-inner">
                     <div className="carousel-item active">
                       <a
@@ -183,32 +164,22 @@ export default function ProductMainContent(props) {
                   <p>{productInfo.description}</p>
                 </div>
 
-                <form className="cart clearfix" method="post">
+                <form className="cart clearfix" onSubmit={addToCart}>
                   <div className="cart-btn d-flex mb-50">
-                    <p>Qty</p>
                     <div className="quantity">
-                      <span
-                        className="qty-minus"
-                        onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"
-                      >
-                        <i className="fa fa-caret-down" aria-hidden="true"></i>
-                      </span>
-                      <input
-                        type="number"
-                        className="qty-text"
-                        id="qty"
-                        step="1"
-                        min="1"
-                        max="300"
-                        name="quantity"
-                        value="1"
-                      />
-                      <span
-                        className="qty-plus"
-                        onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"
-                      >
-                        <i className="fa fa-caret-up" aria-hidden="true"></i>
-                      </span>
+                      <p>
+                        Qty
+                        <input
+                          type="number"
+                          className="qty-text"
+                          id="qty"
+                          step="1"
+                          min="1"
+                          max="300"
+                          name="quantity"
+                          onChange={(e) => setQuantity(e.target.value)}
+                        />
+                      </p>
                     </div>
                   </div>
                   <button

@@ -27,7 +27,7 @@ function App() {
       />
       {/* <Route exact path="/product" component={ProductPage} /> */}
       <Route exact path="/cart" component={CartPage} />
-      <Route exact path="/checkout" component={CheckoutPage} />
+      {/* <Route exact path="/checkout" component={CheckoutPage} /> */}
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/register" component={RegisterPage} />
     </Switch>

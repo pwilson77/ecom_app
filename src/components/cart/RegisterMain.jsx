@@ -1,13 +1,33 @@
+import axios from "axios";
 import React, { useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function RegisterMain(props) {
+  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [otherNames, setOtherNames] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [contactNumber, setContactNumber] = useState("");
+
+  const registerRequest = (e) => {
+    e.preventDefault();
+    const data = {
+      firstName,
+      lastName,
+      otherNames,
+      email,
+      password,
+      contactNo: contactNumber,
+      userType: 1,
+    };
+
+    axios
+      .post(`${server_url}users/create`, data)
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e));
+  };
 
   return (
     <div className="main-content-wrapper d-flex clearfix">
@@ -34,14 +54,13 @@ export default function RegisterMain(props) {
                   <h2>Register</h2>
                 </div>
 
-                <form action="#" method="post">
+                <form onSubmit={registerRequest}>
                   <div className="row">
                     <div className="col-md-6 mb-3">
                       <input
                         type="text"
                         className="form-control"
                         id="first_name"
-                        value=""
                         placeholder="First Name"
                         onChange={(e) => setFirstName(e.target.value)}
                         required
@@ -52,7 +71,7 @@ export default function RegisterMain(props) {
                         type="text"
                         className="form-control"
                         id="last_name"
-                        value=""
+                        ff
                         placeholder="Last Name"
                         required
                         onChange={(e) => setLastName(e.target.value)}
@@ -63,7 +82,6 @@ export default function RegisterMain(props) {
                         type="text"
                         className="form-control"
                         id="first_name"
-                        value=""
                         placeholder="Other Names"
                         required
                         onChange={(e) => setOtherNames(e.target.value)}
@@ -73,7 +91,6 @@ export default function RegisterMain(props) {
                       <input
                         type="email"
                         className="form-control"
-                        value=""
                         placeholder="Email"
                         required
                         onChange={(e) => setEmail(e.target.value)}
@@ -84,7 +101,6 @@ export default function RegisterMain(props) {
                       <input
                         type="password"
                         className="form-control"
-                        value=""
                         placeholder="password"
                         required
                         onChange={(e) => setPassword(e.target.value)}
@@ -95,14 +111,17 @@ export default function RegisterMain(props) {
                         type="text"
                         className="form-control"
                         id="last_name"
-                        value=""
                         placeholder="Contact Number"
                         required
                         onChange={(e) => setContactNumber(e.target.value)}
                       />
                     </div>
                     <div className="cart-btn mt-10">
-                      <a href="#" className="btn amado-btn w-100">
+                      <a
+                        href="#"
+                        className="btn amado-btn w-100"
+                        onClick={registerRequest}
+                      >
                         Register
                       </a>
                     </div>

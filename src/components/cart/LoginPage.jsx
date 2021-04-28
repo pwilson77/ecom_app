@@ -8,7 +8,7 @@ export default function LoginPage(props) {
   return (
     <React.Fragment>
       <SearchWrapper />
-      <LoginMain />
+      <LoginMain history={props.history} />
       <NewsletterArea />
       <FooterArea />
     </React.Fragment>

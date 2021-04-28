@@ -17,22 +17,22 @@ export default function Sidebar(props) {
           </div>
 
           <ul className="nav">
-            <li className="active">
+            {/* <li className="active">
               <Link to="/dashboard">
                 <i className="pe-7s-graph"></i>
                 <p>Dashboard</p>
               </Link>
-            </li>
-            <li>
+            </li> */}
+            <li className="active">
               <Link to="/dashboard_product">
                 <i className="pe-7s-user"></i>
-                <p>Products and Categories</p>
+                <p>Dashboard</p>
               </Link>
             </li>
             <li>
               <Link to="/dashboard_sales">
                 <i className="pe-7s-note2"></i>
-                <p>Sales</p>
+                <p>Purchases</p>
               </Link>
             </li>
           </ul>
