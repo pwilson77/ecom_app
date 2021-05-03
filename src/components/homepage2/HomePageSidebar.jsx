@@ -22,7 +22,7 @@ export default function HomePageSidebar(props) {
       </div>
       <div className="logo">
         <a href="#">
-          <img src={`${server_url}assets/logo-transparent.png`} alt="" />
+          <img src={`${server_url}assets/img/logo-transparent.png`} alt="" />
         </a>
       </div>
       <nav className="amado-nav">

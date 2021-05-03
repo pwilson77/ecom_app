@@ -14,12 +14,12 @@ export default function FooterArea(props) {
                 <div className="footer-logo mr-50">
                   <a href="#">
                     <img
-                      src={`${server_url}assets/logo-transparent.png`}
+                      src={`${server_url}assets/img/logo-transparent.png`}
                       alt=""
                     />
                   </a>
                 </div>
-                <p className="copywrite">
+                {/* <p className="copywrite">
                   Copyright &copy; All rights reserved | This template is made
                   with
                   <i className="fa fa-heart-o" aria-hidden="true"></i> by
@@ -30,7 +30,7 @@ export default function FooterArea(props) {
                   <a href="https://themewagon.com/" target="_blank">
                     Themewagon
                   </a>
-                </p>
+                </p> */}
               </div>
             </div>
 
