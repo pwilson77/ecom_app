@@ -49,7 +49,7 @@ export default function LoginMain(props) {
 
                 <form onSubmit={loginFunc}>
                   <div className="row">
-                    <div className="col-md-6 mb-3">
+                    <div className="col-md-8 mb-3">
                       <input
                         type="email"
                         className="form-control"
@@ -59,7 +59,9 @@ export default function LoginMain(props) {
                         onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
-                    <div className="col-md-6 mb-3">
+                  </div>
+                  <div className="row">
+                    <div className="col-md-8 mb-3">
                       <input
                         type="password"
                         className="form-control"
@@ -69,7 +71,9 @@ export default function LoginMain(props) {
                         onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
-                    <div className="cart-btn mt-10">
+                  </div>
+                  <div className="row">
+                    <div className="cart-btn mt-10 ml-3">
                       <a
                         href="#"
                         className="btn amado-btn w-100"

@@ -116,7 +116,7 @@ export default function RegisterMain(props) {
                         onChange={(e) => setContactNumber(e.target.value)}
                       />
                     </div>
-                    <div className="cart-btn mt-10">
+                    <div className="cart-btn mt-10 ml-3">
                       <a
                         href="#"
                         className="btn amado-btn w-100"
