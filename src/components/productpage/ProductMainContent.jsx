@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 import { add, total } from "cart-localstorage";
 import { Link } from "react-router-dom";
+import $ from "jquery";
 
 export default function ProductMainContent(props) {
   const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
@@ -14,6 +15,7 @@ export default function ProductMainContent(props) {
     //masonryFunc();
     if (!alreadyFetched) {
       fetchProductInfo();
+      setTimeout(masonryFunc, 5000);
       setAlreadyFetched(true);
     }
   });
@@ -39,6 +41,23 @@ export default function ProductMainContent(props) {
         console.log("Fetched data");
       })
       .catch((e) => console.log(e.data));
+  };
+
+  const masonryFunc = () => {
+    var proCata = $(".amado-pro-catagory");
+    var singleProCata = ".single-products-catagory";
+    console.log("test");
+    if ($.fn.imagesLoaded) {
+      proCata.imagesLoaded(function () {
+        proCata.isotope({
+          itemSelector: singleProCata,
+          percentPosition: true,
+          masonry: {
+            columnWidth: singleProCata,
+          },
+        });
+      });
+    }
   };
 
   return (

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function FooterArea(props) {
+  const server_url = "https://pwilson77.github.io/ecom_app/";
+
   return (
     <React.Fragment>
       <footer className="footer_area clearfix" style={{ marginTop: "0px" }}>
@@ -10,8 +12,11 @@ export default function FooterArea(props) {
             <div className="col-12 col-lg-4">
               <div className="single_widget_area">
                 <div className="footer-logo mr-50">
-                  <a href="index.html">
-                    <img src="assets/img/core-img/logo2.png" alt="" />
+                  <a href="#">
+                    <img
+                      src={`${server_url}assets/logo-transparent.png`}
+                      alt=""
+                    />
                   </a>
                 </div>
                 <p className="copywrite">

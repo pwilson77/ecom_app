@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePageSidebar(props) {
-  const server_url = "http://localhost:3000/";
+  const server_url = "https://pwilson77.github.io/ecom_app/";
   const [isChecked, setIsChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -21,8 +21,8 @@ export default function HomePageSidebar(props) {
         <i className="fa fa-close" aria-hidden="true"></i>
       </div>
       <div className="logo">
-        <a href="index.html">
-          <img src={`${server_url}assets/img/core-img/logo.png`} alt="" />
+        <a href="#">
+          <img src={`${server_url}assets/logo-transparent.png`} alt="" />
         </a>
       </div>
       <nav className="amado-nav">
