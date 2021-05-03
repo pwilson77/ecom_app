@@ -17,8 +17,14 @@
 }
 
 .wrap {
-  flex-flow: column wrap;
+  flex-flow: row wrap;
   max-height: 220vh;
+}
+
+.single-products-catagory a img {
+  width: 100%;
+  height: 300px !important;
+  object-fit: contain !important;
 }
 
 /* .wrap img {
