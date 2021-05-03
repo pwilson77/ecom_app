@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function HomePageSidebar(props) {
   const server_url = "http://localhost:3000/";
+  const [isChecked, setIsChecked] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (!isChecked) {
+      let bool = localStorage.getItem("loggedIn");
+      console.log(bool === "true");
+      if (bool === "true") setIsLoggedIn(true);
+      setIsChecked(true);
+    }
+  });
 
   return (
     <header className="header-area clearfix">
@@ -28,12 +39,20 @@ export default function HomePageSidebar(props) {
           {/* <li>
             <Link to="/checkout">Checkout</Link>
           </li> */}
-          <li>
-            <Link to="/login">Login</Link>
-          </li>
-          <li>
-            <Link to="/register">Register</Link>
-          </li>
+          {isLoggedIn ? (
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+          ) : (
+            <React.Fragment>
+              <li>
+                <Link to="/login">Login</Link>
+              </li>
+              <li>
+                <Link to="/register">Register</Link>
+              </li>
+            </React.Fragment>
+          )}
         </ul>
       </nav>
       {/* <div className="amado-btn-group mt-30 mb-100">

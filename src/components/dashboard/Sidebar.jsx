@@ -24,7 +24,7 @@ export default function Sidebar(props) {
               </Link>
             </li> */}
             <li className="active">
-              <Link to="/dashboard_product">
+              <Link to="/dashboard">
                 <i className="pe-7s-user"></i>
                 <p>Dashboard</p>
               </Link>
