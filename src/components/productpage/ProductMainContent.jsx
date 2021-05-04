@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
-import { add, total } from "cart-localstorage";
+import { add, exists, get, total, update } from "cart-localstorage";
 import { Link } from "react-router-dom";
 import $ from "jquery";
 
@@ -22,15 +22,24 @@ export default function ProductMainContent(props) {
 
   const addToCart = (e) => {
     e.preventDefault();
-    add(
-      {
-        id: productInfo.id,
-        name: productInfo.productName,
-        price: parseInt(productInfo.price),
-        image: productInfo.productImage,
-      },
-      parseInt(quantity)
-    );
+    if (exists(productInfo.id)) {
+      let alreadyExisting = get(productInfo.id);
+      update(
+        productInfo.id,
+        "quantity",
+        parseInt(alreadyExisting.quantity) + parseInt(quantity)
+      );
+    } else {
+      add(
+        {
+          id: productInfo.id,
+          name: productInfo.productName,
+          price: parseInt(productInfo.price),
+          image: productInfo.productImage,
+        },
+        parseInt(quantity)
+      );
+    }
   };
 
   const fetchProductInfo = () => {
