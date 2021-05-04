@@ -32,3 +32,13 @@
   height: 200px;
   object-fit: contain;
 } */
+
+.carousel-con {
+  height: 500px !important;
+}
+
+.carousel-img {
+  width: 100%;
+  height: inherit;
+  object-fit: contain;
+}
