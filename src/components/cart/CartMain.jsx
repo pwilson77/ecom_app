@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 import { list } from "cart-localstorage";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function CartMain(props) {
+  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [total, setTotal] = useState(0);
   const [checkCal, setCheckCal] = useState(false);
   const calculateCart = () => {
@@ -18,11 +20,32 @@ export default function CartMain(props) {
     }
   });
 
+  const handleCheckout = async (e) => {
+    e.preventDefault();
+    let user_details = JSON.parse(localStorage.getItem("user_details"));
+    list().map((item) => {
+      let data = {
+        userID: user_details.id,
+        productID: item.id,
+        quantity: item.quantity,
+      };
+      axios
+        .post(`${server_url}orders/create`, data)
+        .then((res) => {
+          console.log(res.data);
+          alert(res.data.message);
+        })
+        .catch((e) => {
+          alert(e.data);
+        });
+    });
+  };
+
   return (
     <div className="main-content-wrapper d-flex clearfix">
       <div className="mobile-nav">
         <div className="amado-navbar-brand">
-          <a href="index.html">
+          <a href="#">
             <img src="assets/img/core-img/logo.png" alt="" />
           </a>
         </div>
@@ -92,7 +115,11 @@ export default function CartMain(props) {
                   </li>
                 </ul>
                 <div className="cart-btn mt-100">
-                  <a href="cart.html" className="btn amado-btn w-100">
+                  <a
+                    href="#"
+                    className="btn amado-btn w-100"
+                    onClick={handleCheckout}
+                  >
                     Checkout
                   </a>
                 </div>

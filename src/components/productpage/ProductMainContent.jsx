@@ -26,10 +26,10 @@ export default function ProductMainContent(props) {
       {
         id: productInfo.id,
         name: productInfo.productName,
-        price: productInfo.price,
+        price: parseInt(productInfo.price),
         image: productInfo.productImage,
       },
-      quantity
+      parseInt(quantity)
     );
   };
 
@@ -102,13 +102,10 @@ export default function ProductMainContent(props) {
                 >
                   <ol className="carousel-indicators"></ol>
                   <div className="carousel-inner">
-                    <div className="carousel-item active">
-                      <a
-                        className="gallery_img"
-                        href="assets/img/product-img/pro-big-1.jpg"
-                      >
+                    <div className="carousel-item active carousel-con">
+                      <a className="gallery_img" href="#">
                         <img
-                          className="d-block w-100"
+                          className="d-block w-100 carousel-img"
                           src={productInfo.productImage}
                           alt="First slide"
                         />

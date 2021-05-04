@@ -119,7 +119,7 @@ export default function UserDashboardComponent(props) {
                       type="submit"
                       className="btn btn-info btn-fill pull-right"
                     >
-                      Add Product
+                      Edit Details
                     </button>
                     <div className="clearfix"></div>
                   </form>
