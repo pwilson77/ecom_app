@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/ecom_app/static/css/main.9d5b29c0.chunk.css",
-    "main.js": "/ecom_app/static/js/main.79f43c01.chunk.js",
-    "main.js.map": "/ecom_app/static/js/main.79f43c01.chunk.js.map",
+    "main.js": "/ecom_app/static/js/main.aef8b5bf.chunk.js",
+    "main.js.map": "/ecom_app/static/js/main.aef8b5bf.chunk.js.map",
     "runtime-main.js": "/ecom_app/static/js/runtime-main.8ea2430b.js",
     "runtime-main.js.map": "/ecom_app/static/js/runtime-main.8ea2430b.js.map",
-    "static/js/2.b65f25c7.chunk.js": "/ecom_app/static/js/2.b65f25c7.chunk.js",
-    "static/js/2.b65f25c7.chunk.js.map": "/ecom_app/static/js/2.b65f25c7.chunk.js.map",
+    "static/js/2.c356f2c4.chunk.js": "/ecom_app/static/js/2.c356f2c4.chunk.js",
+    "static/js/2.c356f2c4.chunk.js.map": "/ecom_app/static/js/2.c356f2c4.chunk.js.map",
     "static/js/3.e4b4f152.chunk.js": "/ecom_app/static/js/3.e4b4f152.chunk.js",
     "static/js/3.e4b4f152.chunk.js.map": "/ecom_app/static/js/3.e4b4f152.chunk.js.map",
     "index.html": "/ecom_app/index.html",
     "static/css/main.9d5b29c0.chunk.css.map": "/ecom_app/static/css/main.9d5b29c0.chunk.css.map",
-    "static/js/2.b65f25c7.chunk.js.LICENSE.txt": "/ecom_app/static/js/2.b65f25c7.chunk.js.LICENSE.txt"
+    "static/js/2.c356f2c4.chunk.js.LICENSE.txt": "/ecom_app/static/js/2.c356f2c4.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.8ea2430b.js",
-    "static/js/2.b65f25c7.chunk.js",
+    "static/js/2.c356f2c4.chunk.js",
     "static/css/main.9d5b29c0.chunk.css",
-    "static/js/main.79f43c01.chunk.js"
+    "static/js/main.aef8b5bf.chunk.js"
   ]
 }
