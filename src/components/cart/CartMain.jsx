@@ -3,13 +3,18 @@ import HomePageSidebar from "../homepage2/HomePageSidebar";
 import { list } from "cart-localstorage";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { PaystackButton } from "react-paystack";
 
 export default function CartMain(props) {
   const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  let publicKey = "pk_test_7e9aa74526402bc6c81165bb99449e296a1b157c";
   const [total, setTotal] = useState(0);
   const [checkCal, setCheckCal] = useState(false);
+  const [user, setUser] = useState({});
   const calculateCart = () => {
     let tot = list().reduce((x, y) => x + y.price * y.quantity, 0);
+    let user_details = JSON.parse(localStorage.getItem("user_details"));
+    setUser(user_details);
     setTotal(tot);
     setCheckCal(true);
   };
@@ -20,8 +25,8 @@ export default function CartMain(props) {
     }
   });
 
-  const handleCheckout = async (e) => {
-    e.preventDefault();
+  const handleCheckout = async () => {
+    // e.preventDefault();
     let user_details = JSON.parse(localStorage.getItem("user_details"));
     list().map((item) => {
       let data = {
@@ -39,6 +44,23 @@ export default function CartMain(props) {
           alert(e.data);
         });
     });
+  };
+
+  const componentProps = {
+    email: user.email,
+    amount: parseInt(total) * 100,
+    currency: "GHS",
+    metadata: {
+      name: user.firstName,
+      phone: user.lastName,
+    },
+    publicKey,
+    text: "Pay Now",
+    onSuccess: () => {
+      handleCheckout();
+      alert("Thanks for doing business with us! Come back soon!!");
+    },
+    onClose: () => alert("Wait! You need this oil, don't go!!!!"),
   };
 
   return (
@@ -115,13 +137,17 @@ export default function CartMain(props) {
                   </li>
                 </ul>
                 <div className="cart-btn mt-100">
-                  <a
+                  <PaystackButton
+                    {...componentProps}
+                    className="btn amado-btn w-100"
+                  />
+                  {/* <a
                     href="#"
                     className="btn amado-btn w-100"
                     onClick={handleCheckout}
                   >
                     Checkout
-                  </a>
+                  </a> */}
                 </div>
               </div>
             </div>

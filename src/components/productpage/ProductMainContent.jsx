@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import $ from "jquery";
 
 export default function ProductMainContent(props) {
+  const publicKey = "pk_test_7e9aa74526402bc6c81165bb99449e296a1b157c";
   const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [productInfo, setProductInfo] = useState({});
   const [alreadyFetched, setAlreadyFetched] = useState(false);
