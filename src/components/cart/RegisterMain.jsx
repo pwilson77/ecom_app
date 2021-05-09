@@ -25,7 +25,10 @@ export default function RegisterMain(props) {
 
     axios
       .post(`${server_url}users/create`, data)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        alert("Registration successful");
+        console.log(res.data);
+      })
       .catch((e) => console.log(e));
   };
 
