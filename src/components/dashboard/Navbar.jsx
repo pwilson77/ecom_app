@@ -1,6 +1,15 @@
 import React from "react";
+import { useHistory } from "react-router";
 
 export default function Navbar(props) {
+  let history = useHistory();
+
+  const logoutUser = () => {
+    localStorage.setItem("user_details", {});
+    localStorage.setItem("loggedIn", false);
+    history.push("/push");
+  };
+
   return (
     <nav className="navbar navbar-default navbar-fixed">
       <div className="container-fluid">
@@ -79,7 +88,7 @@ export default function Navbar(props) {
                           </ul>
                     </li> */}
             <li>
-              <a href="#">
+              <a href="#" onClick={logoutUser}>
                 <p>Log out</p>
               </a>
             </li>

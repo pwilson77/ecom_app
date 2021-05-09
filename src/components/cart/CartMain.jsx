@@ -28,6 +28,11 @@ export default function CartMain(props) {
   const handleCheckout = async () => {
     // e.preventDefault();
     let user_details = JSON.parse(localStorage.getItem("user_details"));
+
+    if (list().length === 0) {
+      alert("There are no items in your cart");
+    }
+
     list().map((item) => {
       let data = {
         userID: user_details.id,

@@ -177,9 +177,9 @@ export default function ProductMainContent(props) {
                       <i className="fa fa-star" aria-hidden="true"></i>
                       <i className="fa fa-star" aria-hidden="true"></i>
                     </div>
-                    <div className="review">
+                    {/* <div className="review">
                       <a href="#">Write A Review</a>
-                    </div>
+                    </div> */}
                   </div>
                   <p className="avaibility">
                     <i className="fa fa-circle"></i> In Stock

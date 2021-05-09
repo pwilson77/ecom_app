@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function HomePageSidebar(props) {
+  let history = useHistory();
   const server_url = "https://pwilson77.github.io/ecom_app/";
   const [isChecked, setIsChecked] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,6 +15,13 @@ export default function HomePageSidebar(props) {
       setIsChecked(true);
     }
   });
+
+  const logoutUser = () => {
+    localStorage.setItem("user_details", {});
+    localStorage.setItem("loggedIn", false);
+    setIsLoggedIn(false);
+    history.push("/login");
+  };
 
   return (
     <header className="header-area clearfix">
@@ -40,9 +48,16 @@ export default function HomePageSidebar(props) {
             <Link to="/checkout">Checkout</Link>
           </li> */}
           {isLoggedIn ? (
-            <li>
-              <Link to="/dashboard">Dashboard</Link>
-            </li>
+            <React.Fragment>
+              <li>
+                <Link to="/dashboard">Dashboard</Link>
+              </li>
+              <li>
+                <a href="#" onClick={logoutUser}>
+                  Logout
+                </a>
+              </li>
+            </React.Fragment>
           ) : (
             <React.Fragment>
               <li>
