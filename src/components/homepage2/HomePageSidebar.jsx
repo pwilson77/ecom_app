@@ -17,7 +17,7 @@ export default function HomePageSidebar(props) {
   });
 
   const logoutUser = () => {
-    localStorage.setItem("user_details", {});
+    localStorage.removeItem("user_details");
     localStorage.setItem("loggedIn", false);
     setIsLoggedIn(false);
     history.push("/login");

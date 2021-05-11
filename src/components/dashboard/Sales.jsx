@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { serverUrl } from "../../server";
 import Navbar from "./Navbar";
 
 export default function Sales(props) {
-  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  // const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [orders, setOrders] = useState([]);
   const [isFetched, setIsFetched] = useState(false);
 
@@ -17,7 +18,7 @@ export default function Sales(props) {
   const fetchUserOrders = () => {
     let user_details = JSON.parse(localStorage.getItem("user_details"));
     axios
-      .get(`${server_url}orders/${user_details.id}`)
+      .get(`${serverUrl}orders/${user_details.id}`)
       .then((res) => setOrders(res.data.message))
       .catch((e) => alert("Error with fetching"));
   };

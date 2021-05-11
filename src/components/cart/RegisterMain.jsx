@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { serverUrl } from "../../server";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function RegisterMain(props) {
-  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  // const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [otherNames, setOtherNames] = useState("");
@@ -24,7 +25,7 @@ export default function RegisterMain(props) {
     };
 
     axios
-      .post(`${server_url}users/create`, data)
+      .post(`${serverUrl}users/create`, data)
       .then((res) => {
         alert("Registration successful");
         console.log(res.data);

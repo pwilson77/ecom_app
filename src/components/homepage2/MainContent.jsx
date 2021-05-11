@@ -4,9 +4,10 @@ import $ from "jquery";
 import HomePageSidebar from "./HomePageSidebar";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { serverUrl } from "../../server";
 
 export default function MainContent(props) {
-  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  // const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [products, setProducts] = useState([]);
   const [alreadyFetched, setAlreadyFetched] = useState(false);
 
@@ -20,7 +21,7 @@ export default function MainContent(props) {
 
   const fetchProducts = () => {
     axios
-      .get(`${server_url}product`)
+      .get(`${serverUrl}product`)
       .then((res) => {
         setProducts(res.data.message);
         masonryFunc();

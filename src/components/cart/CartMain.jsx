@@ -11,10 +11,15 @@ export default function CartMain(props) {
   const [total, setTotal] = useState(0);
   const [checkCal, setCheckCal] = useState(false);
   const [user, setUser] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
   const calculateCart = () => {
     let tot = list().reduce((x, y) => x + y.price * y.quantity, 0);
     let user_details = JSON.parse(localStorage.getItem("user_details"));
-    setUser(user_details);
+    console.log(user_details);
+    if (user_details != null) {
+      setUser(user_details);
+      setLoggedIn(true);
+    }
     setTotal(tot);
     setCheckCal(true);
   };
@@ -49,15 +54,18 @@ export default function CartMain(props) {
           alert(e.data);
         });
     });
+
+    localStorage.removeItem("__cart");
+    calculateCart();
   };
 
   const componentProps = {
-    email: user.email,
+    email: "test@gmail.com",
     amount: parseInt(total) * 100,
     currency: "GHS",
     metadata: {
-      name: user.firstName,
-      phone: user.lastName,
+      name: "user.firstName",
+      phone: "user.lastName",
     },
     publicKey,
     text: "Pay Now",
@@ -142,10 +150,15 @@ export default function CartMain(props) {
                   </li>
                 </ul>
                 <div className="cart-btn mt-100">
-                  <PaystackButton
-                    {...componentProps}
-                    className="btn amado-btn w-100"
-                  />
+                  {loggedIn ? (
+                    <PaystackButton
+                      {...componentProps}
+                      className="btn amado-btn w-100"
+                    />
+                  ) : (
+                    <b> Please login before you can checkout</b>
+                  )}
+
                   {/* <a
                     href="#"
                     className="btn amado-btn w-100"

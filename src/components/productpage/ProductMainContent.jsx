@@ -30,6 +30,7 @@ export default function ProductMainContent(props) {
         "quantity",
         parseInt(alreadyExisting.quantity) + parseInt(quantity)
       );
+      alert("An existing product quantity has been updated");
     } else {
       add(
         {
@@ -40,6 +41,7 @@ export default function ProductMainContent(props) {
         },
         parseInt(quantity)
       );
+      alert("A new product has been added to cart");
     }
   };
 

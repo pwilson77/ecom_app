@@ -1,10 +1,11 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useAlert } from "react-alert";
+import { serverUrl } from "../../server";
 import HomePageSidebar from "../homepage2/HomePageSidebar";
 
 export default function LoginMain(props) {
-  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  // const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const alert = useAlert();
@@ -12,7 +13,7 @@ export default function LoginMain(props) {
   const loginFunc = () => {
     const data = { email, password };
     axios
-      .post(`${server_url}auth/login`, data)
+      .post(`${serverUrl}auth/login`, data)
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("user_details", JSON.stringify(res.data.message));

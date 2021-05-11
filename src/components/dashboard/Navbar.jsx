@@ -5,7 +5,7 @@ export default function Navbar(props) {
   let history = useHistory();
 
   const logoutUser = () => {
-    localStorage.setItem("user_details", {});
+    localStorage.removeItem("user_details");
     localStorage.setItem("loggedIn", false);
     history.push("/push");
   };
