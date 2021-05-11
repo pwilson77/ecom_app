@@ -4,9 +4,10 @@ import { list } from "cart-localstorage";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { PaystackButton } from "react-paystack";
+import { serverUrl } from "../../server";
 
 export default function CartMain(props) {
-  const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
+  // const server_url = "https://eos-adinkrah-enterprise-api.herokuapp.com/";
   let publicKey = "pk_test_7e9aa74526402bc6c81165bb99449e296a1b157c";
   const [total, setTotal] = useState(0);
   const [checkCal, setCheckCal] = useState(false);
@@ -45,7 +46,7 @@ export default function CartMain(props) {
         quantity: item.quantity,
       };
       axios
-        .post(`${server_url}orders/create`, data)
+        .post(`${serverUrl}orders/create`, data)
         .then((res) => {
           console.log(res.data);
           alert(res.data.message);
