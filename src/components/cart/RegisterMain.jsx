@@ -20,7 +20,7 @@ export default function RegisterMain(props) {
       email,
       password,
       contactNo: contactNumber,
-      userType: 1,
+      userType: 2,
     };
 
     axios
